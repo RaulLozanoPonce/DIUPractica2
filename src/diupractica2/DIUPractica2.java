@@ -25,16 +25,17 @@ public class DIUPractica2 extends javax.swing.JFrame {
         initComponents();
         
         inicializarMatriz(0,100);
-        matrizTextArea.setTabSize(2);
-        matrizTextArea.setText(matrizToString());
+        matrizTextArea.setTabSize(Math.max(2,Integer.toString(100).length()));
+        matrizTextArea.setText(matrizAString());
         
         valorMinimo.setText("0");
         valorMaximo.setText("100");
+        valorMinimo.setToolTipText("Introducir número entero.");
+        valorMaximo.setToolTipText("Introducir número entero.");
         
-        umbralSlider.setValue(0);
-        umbralSlider.setMajorTickSpacing(10);
         umbralSlider.setPaintTicks(true);
         umbralSlider.setPaintLabels(true);
+        inicializarSlider(0,100);
     }
 
     /**
@@ -200,7 +201,7 @@ public class DIUPractica2 extends javax.swing.JFrame {
 
     private void umbralSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_umbralSliderStateChanged
         if(valoresSonNumeros()){
-            matrizTextArea.setText(matrizToString());
+            matrizTextArea.setText(matrizAString());
         }else{
             matrizTextArea.setText("");
         }
@@ -212,7 +213,7 @@ public class DIUPractica2 extends javax.swing.JFrame {
             int max = Integer.parseInt(valorMaximo.getText());
             inicializarMatriz(min,max);
             matrizTextArea.setTabSize(Math.max(2,Integer.toString(max).length()));
-            matrizTextArea.setText(matrizToString());
+            matrizTextArea.setText(matrizAString());
             inicializarSlider(min, max);
         }else{
             matrizTextArea.setText("");
@@ -250,7 +251,7 @@ public class DIUPractica2 extends javax.swing.JFrame {
         }
     }
     
-    private String matrizToString(){
+    private String matrizAString(){
         String matrizString = "";
         
         for (int i = 0; i < matriz.length; i++) {
